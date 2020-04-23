@@ -18,5 +18,13 @@ namespace CoreEscuela.Util
             string B = string.Concat(Enumerable.Repeat("-", cant));
             System.Console.WriteLine("Concat(Enumerable)" + B);
         }
+
+        public static void Dibujar(int cant = 10)
+        {
+            var linea = "".PadLeft(cant, '=');
+            System.Console.WriteLine(linea);
+
+        
+        }
     }
 }

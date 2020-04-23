@@ -13,12 +13,35 @@ namespace CoreEscuela
         {
             var EscuelaEngine = new EscuelaEngine();
             EscuelaEngine.Inicializar();
+            Impresion(EscuelaEngine.Escuela.Cursos);
+           /* Busqueda(EscuelaEngine.Escuela.Cursos);
             ImpreCurso(EscuelaEngine.Escuela.Cursos);
-            Busqueda(EscuelaEngine.Escuela.Cursos);
-            ImpreCurso(EscuelaEngine.Escuela.Cursos);
-            Printer.Dibujarlinea();
+            Printer.Dibujarlinea();*/
 
         }
+        public static void Impresion(List<Curso> listCurso)
+        {
+
+            foreach (Curso curso in listCurso)
+            {
+                Printer.Dibujar();
+                System.Console.WriteLine($"Curso: {curso.Nombre}");
+                 Printer.Dibujar();
+                 System.Console.WriteLine("");
+                foreach (var asa in curso.Asignaturas)
+                {
+                    System.Console.WriteLine($"Asignatura: {asa.Nombre}");
+                }
+                Printer.Dibujar();
+                 System.Console.WriteLine("");
+                foreach (var al in curso.Alumnos)
+                {
+                    System.Console.WriteLine($"Alumno: {al.Nombre}");
+                }
+                
+            }
+        }
+
 
         private static void Busqueda(List<Curso> Cursos)
         {
@@ -43,6 +66,7 @@ namespace CoreEscuela
 
             foreach (var item in listCurso)
             {
+                
                 //Formas de Impresion con Enter \n
                 System.Console.WriteLine(string.Format("Curso:  {0}, Id: {1}, \n Jornada {2}", item.Nombre, item.Id, item.Jornada));
                   //Formas de Impresion con Enter System.Environment.NewLine

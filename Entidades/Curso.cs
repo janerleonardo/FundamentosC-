@@ -6,7 +6,7 @@ namespace CoreEscuela.Entidades
     {
         public List<Alumno> Alumnos {set; get;}
 
-          public List<Asignatura> Asignaturas {set; get;}
+        public List<Asignatura> Asignaturas {set; get;}
 
         public Jornada Jornada { get; set; }
 

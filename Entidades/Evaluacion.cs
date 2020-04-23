@@ -10,6 +10,8 @@ namespace CoreEscuela.Entidades
 
         public List<Periodos> Periodos { get; set; }
 
+        public Double Nota { get; set; }
+
         public Evaluacion()
         {
             Id= Guid.NewGuid().ToString();
