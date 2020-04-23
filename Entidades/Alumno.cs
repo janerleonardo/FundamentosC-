@@ -1,16 +1,17 @@
+using System;
+using System.Collections.Generic;
+
 namespace CoreEscuela.Entidades
 {
-    public class Alumno
+    public class Alumno : EntidadEscuela
     {
-        public string Id { set; get;}
-        public string Nombre { get; set; }
+        public List<Asignatura> Asignaturas { get; set; }
 
+        public Curso Curso   { get; set; }
 
         public Alumno()
         {
-            
+            Id = Guid.NewGuid().ToString();
         }
-
-
     }
 }

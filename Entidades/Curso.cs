@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using System;
 namespace CoreEscuela.Entidades
 {
-    public class Curso
+    public class Curso : EntidadEscuela
     {
+        public List<Alumno> Alumnos {set; get;}
 
-        public string Nombre { get; set; }
-        public string Id { get; private set; }
+          public List<Asignatura> Asignaturas {set; get;}
 
         public Jornada Jornada { get; set; }
 
