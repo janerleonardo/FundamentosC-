@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj": {}
+    "c:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj": {}
   },
   "projects": {
-    "C:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj": {
+    "c:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj",
+        "projectUniqueName": "c:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj",
         "projectName": "CoreEscuela",
-        "projectPath": "C:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj",
+        "projectPath": "c:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\CoreEscuela.csproj",
         "packagesPath": "C:\\Users\\Jan3r\\.nuget\\packages\\",
-        "outputPath": "C:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\obj\\",
+        "outputPath": "c:\\Cursos\\Curso de  Fundamento Net Core\\CoreEscuela\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
