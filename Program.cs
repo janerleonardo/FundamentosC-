@@ -3,6 +3,7 @@ using System;
 using CoreEscuela.Entidades;
 using CoreEscuela.App;
 using System.Collections.Generic;
+using CoreEscuela.Util;
 
 namespace CoreEscuela
 {
@@ -15,6 +16,7 @@ namespace CoreEscuela
             ImpreCurso(EscuelaEngine.Escuela.Cursos);
             Busqueda(EscuelaEngine.Escuela.Cursos);
             ImpreCurso(EscuelaEngine.Escuela.Cursos);
+            Printer.Dibujarlinea();
 
         }
 
