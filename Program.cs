@@ -11,9 +11,12 @@ namespace CoreEscuela
     {
         static void Main(string[] args)
         {
-            var EscuelaEngine = new EscuelaEngine();
+           
+           var EscuelaEngine = new EscuelaEngine();
             EscuelaEngine.Inicializar();
             Impresion(EscuelaEngine.Escuela.Cursos);
+
+
            /* Busqueda(EscuelaEngine.Escuela.Cursos);
             ImpreCurso(EscuelaEngine.Escuela.Cursos);
             Printer.Dibujarlinea();*/

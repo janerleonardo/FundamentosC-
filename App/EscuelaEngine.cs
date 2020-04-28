@@ -22,8 +22,35 @@ namespace CoreEscuela.App
             Escuela = new Escuela("Platzi", "Ave siempre viva", 2020, "Janer");
             CargarCurso();
             CargarAsignatura();
-            //Escuela.Cursos.ForEach((Curso) => Curso.Alumnos.AddRange(GenerarAlumnos()));
-           // CargarEvaluaciones();
+            CargarEvaluaciones();
+
+        }
+
+        private void CargarEvaluaciones()
+        {
+
+            foreach (var curso in Escuela.Cursos)
+            {
+                foreach (var asignatura in curso.Asignaturas)
+                {
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        var rnd = new Random(System.Environment.TickCount);
+
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var ev = new Evaluacion
+                            {
+                                Asignatura = asignatura,
+                                Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
+                                Nota = (float)(5 * rnd.NextDouble()),
+                                Alumno = alumno
+                            };
+                            alumno.Evaluciones.Add(ev);
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -41,10 +68,7 @@ namespace CoreEscuela.App
                             
         }
 
-        private void CargarEvaluaciones()
-        {
-            throw new NotImplementedException();
-        }
+
 
         private void CargarAsignatura()
         {

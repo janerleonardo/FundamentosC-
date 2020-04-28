@@ -12,7 +12,7 @@ namespace CoreEscuela.Entidades
 
         public Curso()
         {
-            Id =  Guid.NewGuid().ToString();
+           
         }
     }
 }

@@ -11,7 +11,7 @@ namespace CoreEscuela.Entidades
         public List<Evaluacion> Evaluaciones { get; set; }
         public Asignatura()
         {
-            Id = Guid.NewGuid().ToString();
+
         }
     }
 }

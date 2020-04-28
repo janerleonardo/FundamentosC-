@@ -8,13 +8,15 @@ namespace CoreEscuela.Entidades
 
         public Alumno Alumno { get; set; }
 
+         public Asignatura Asignatura { get; set; }
+
         public List<Periodos> Periodos { get; set; }
 
         public Double Nota { get; set; }
 
         public Evaluacion()
         {
-            Id= Guid.NewGuid().ToString();
+
         }
     }
 }

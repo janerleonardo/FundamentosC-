@@ -7,11 +7,13 @@ namespace CoreEscuela.Entidades
     {
         public List<Asignatura> Asignaturas { get; set; }
 
+        public List<Evaluacion> Evaluciones { get; set; } = new  List<Evaluacion>();
+
         public Curso Curso   { get; set; }
 
         public Alumno()
         {
-            Id = Guid.NewGuid().ToString();
+
         }
     }
 }
