@@ -26,7 +26,38 @@ namespace CoreEscuela.App
 
         }
 
-        #region  Metodos
+    #region  Metodos Subrecargado
+
+        public List<EntidadEscuela> GetEscuelas(
+                                        bool traerEvaluaciones = true,
+                                        bool traerAlumnos = true,
+                                        bool traerAsignaturas = true,
+                                        bool traerCursos = true)
+
+        {
+            int dummy = 0;
+            return GetEscuelas(out dummy, out dummy);
+        }
+        public List<EntidadEscuela> GetEscuelas(out int conteo,
+                                                bool traerEvaluaciones = true,
+                                                bool traerAlumnos = true,
+                                                bool traerAsignaturas = true,
+                                                bool traerCursos = true)
+
+        {
+            int dummy = 0;
+            return GetEscuelas(out conteo, out dummy);
+        }
+        public List<EntidadEscuela> GetEscuelas(out int conteoB,
+                                                bool traerEvaluaciones = true,
+                                                bool traerAlumnos = true,
+                                                bool traerAsignaturas = true,
+                                                bool traerCursos = true)
+
+        {
+            int dummy = 0;
+            return GetEscuelas(out dummy, out conteoB);
+        }
         public List<EntidadEscuela> GetEscuelas(out int conteo,
                                                 out int conteoA,
                                                 bool traerEvaluaciones = true,
@@ -51,10 +82,11 @@ namespace CoreEscuela.App
             {
                 if (traerAlumnos)
                     listaObj.AddRange(curso.Alumnos);
-                    conteoA = curso.Alumnos.Count;
+                conteoA = curso.Alumnos.Count;
                 if (traerAsignaturas)
                     listaObj.AddRange(curso.Asignaturas);
-                if (traerEvaluaciones){
+                if (traerEvaluaciones)
+                {
                     foreach (var alumno in curso.Alumnos)
                     {
                         listaObj.AddRange(alumno.Evaluciones);
@@ -65,7 +97,8 @@ namespace CoreEscuela.App
 
             return listaObj;
         }
- 
+    #endregion
+    #region  Otros
         private void CargarEvaluaciones()
         {
 
@@ -100,12 +133,12 @@ namespace CoreEscuela.App
             string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
             string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
 
-           var  listaAlumno = from n1 in nombre1
-                                       from n2 in nombre2
-                                       from ap in apellido1
-                                       select new Alumno () { Nombre = $"{n1} {n2} {ap}"};
+            var listaAlumno = from n1 in nombre1
+                              from n2 in nombre2
+                              from ap in apellido1
+                              select new Alumno() { Nombre = $"{n1} {n2} {ap}" };
             return listaAlumno.OrderBy((al) => al.Id).Take(cantidad).ToList();
-                            
+
         }
 
 
@@ -121,7 +154,7 @@ namespace CoreEscuela.App
                     new Asignatura() { Nombre = "Castellano"},
                 };
 
-                curso.Asignaturas =  listaAsignatura;
+                curso.Asignaturas = listaAsignatura;
             }
         }
 
@@ -139,17 +172,17 @@ namespace CoreEscuela.App
                         new Curso() {Nombre = "601", Jornada = Jornada.Tarde},
                         new Curso {  Nombre = "701", Jornada = Jornada.Noche}
             };
-            
+
             foreach (var curso in Escuela.Cursos)
             {
-                int cantRandon = new Random().Next(5,30);
+                int cantRandon = new Random().Next(5, 30);
                 curso.Alumnos = GenerarAlumnos(cantRandon);
             }
 
         }
 
-    #endregion
+        #endregion
     }
 
-    
+
 }
