@@ -17,10 +17,11 @@ namespace CoreEscuela
             EscuelaEngine.Inicializar();
             //Impresion(EscuelaEngine.Escuela.Cursos);
             var listObjetos = EscuelaEngine.GetEscuelas();
+          
 
-            var  listaIlgar = from obj in listObjetos
+            /*var  listaIlgar = from obj in listObjetos
                                 where obj  is ILugar
-                                select (ILugar) obj;
+                                select (ILugar) obj;*/
 
           
 

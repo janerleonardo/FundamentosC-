@@ -26,6 +26,35 @@ namespace CoreEscuela.App
 
         }
 
+        #region  Metodos
+        public (List<EntidadEscuela>, int) GetEscuelas(bool traerEvaluaciones = true,
+                                                bool traerAlumnos = true,
+                                                bool traerAsignaturas = true,
+                                                bool traerCursos = true)
+        {
+            var listaObj = new List<EntidadEscuela>();
+            int conteo = 0;
+            listaObj.Add(Escuela);
+            if (traerCursos)
+                listaObj.AddRange(Escuela.Cursos);
+            foreach (var curso in Escuela.Cursos)
+            {
+                if (traerAlumnos)
+                    listaObj.AddRange(curso.Alumnos);
+                if (traerAsignaturas)
+                    listaObj.AddRange(curso.Asignaturas);
+                if (traerEvaluaciones){
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        listaObj.AddRange(alumno.Evaluciones);
+                        conteo += alumno.Evaluciones.Count;
+                    }
+                }
+            }
+
+            return (listaObj,conteo);
+        }
+ 
         private void CargarEvaluaciones()
         {
 
@@ -107,23 +136,8 @@ namespace CoreEscuela.App
             }
 
         }
-        public List<EntidadEscuela> GetEscuelas()
-        {
-            var listaObj = new List<EntidadEscuela>();
-            listaObj.Add(Escuela);
-            listaObj.AddRange(Escuela.Cursos);
-            foreach (var curso in Escuela.Cursos)
-            {
-                listaObj.AddRange(curso.Alumnos);
-                listaObj.AddRange(curso.Asignaturas);
-                foreach (var alumno in curso.Alumnos)
-                {
-                    listaObj.AddRange(alumno.Evaluciones);
-                }
-            }
 
-            return listaObj;
-        }
+    #endregion
     }
 
     
