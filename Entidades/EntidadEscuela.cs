@@ -1,7 +1,8 @@
+using System.Text;
 using System;
 namespace CoreEscuela.Entidades
 {
-    public class EntidadEscuela
+    public abstract class EntidadEscuela
     {
         public string Id { get; set; }
 
@@ -11,5 +12,11 @@ namespace CoreEscuela.Entidades
         {
             Id = Guid.NewGuid().ToString();
         }
+
+        public override string ToString()
+        {
+            return $"{Nombre}, {Id}";
+        }
+
     }
 }

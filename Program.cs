@@ -4,6 +4,7 @@ using CoreEscuela.Entidades;
 using CoreEscuela.App;
 using System.Collections.Generic;
 using CoreEscuela.Util;
+using System.Linq;
 
 namespace CoreEscuela
 {
@@ -14,7 +15,17 @@ namespace CoreEscuela
            
            var EscuelaEngine = new EscuelaEngine();
             EscuelaEngine.Inicializar();
-            Impresion(EscuelaEngine.Escuela.Cursos);
+            //Impresion(EscuelaEngine.Escuela.Cursos);
+            var listObjetos = EscuelaEngine.GetEscuelas();
+
+            var  listaIlgar = from obj in listObjetos
+                                where obj  is ILugar
+                                select (ILugar) obj;
+
+          
+
+
+
 
 
            /* Busqueda(EscuelaEngine.Escuela.Cursos);

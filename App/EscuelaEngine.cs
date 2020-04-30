@@ -5,7 +5,7 @@ using CoreEscuela.Entidades;
 
 namespace CoreEscuela.App
 {
-    public class EscuelaEngine
+    public sealed class EscuelaEngine
     {
         public EscuelaEngine(Escuela escuela)
         {
@@ -107,5 +107,24 @@ namespace CoreEscuela.App
             }
 
         }
+        public List<EntidadEscuela> GetEscuelas()
+        {
+            var listaObj = new List<EntidadEscuela>();
+            listaObj.Add(Escuela);
+            listaObj.AddRange(Escuela.Cursos);
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaObj.AddRange(curso.Alumnos);
+                listaObj.AddRange(curso.Asignaturas);
+                foreach (var alumno in curso.Alumnos)
+                {
+                    listaObj.AddRange(alumno.Evaluciones);
+                }
+            }
+
+            return listaObj;
+        }
     }
+
+    
 }

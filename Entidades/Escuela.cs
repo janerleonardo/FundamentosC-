@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 namespace CoreEscuela.Entidades
 {
-    public class Escuela
+    public class Escuela : EntidadEscuela, ILugar
     {
-        public string Nombre {set; get;}
         public string Direccion {set; get;}
         public int AñoCreacion { get; set; }
         public string Ceo { get; set; }
         public string Ciudad { get; set; }
-         public string Pais { get; set; }
-         public TipoEscuela TipoEscuela { get; set; }
+        public string Pais { get; set; }
+        public TipoEscuela TipoEscuela { get; set; }
 
          public List<Curso> Cursos { get; set; }
         public Escuela(string Nombre, string Direccion, int AñoCreacion, string Ceo)
@@ -55,13 +54,9 @@ namespace CoreEscuela.Entidades
             
         }
 
-        
-
-
-
-        
-
-
-
+        public void LimpiarDireccion()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
