@@ -27,13 +27,23 @@ namespace CoreEscuela.App
         }
 
         #region  Metodos
-        public (List<EntidadEscuela>, int) GetEscuelas(bool traerEvaluaciones = true,
+        public List<EntidadEscuela> GetEscuelas(out int conteo,
+                                                out int conteoA,
+                                                bool traerEvaluaciones = true,
                                                 bool traerAlumnos = true,
                                                 bool traerAsignaturas = true,
                                                 bool traerCursos = true)
         {
             var listaObj = new List<EntidadEscuela>();
-            int conteo = 0;
+            /// <summary>
+            /// Asignaciones Multiples, es asignarle a un objeto el valor de otro 
+            /// que a su vez esta asignado un valor u otro objeto cambiamos esto
+            ///   conteo = 0;
+            //   conteoA = 0;
+            ///
+            /// Por esto:
+            /// </summary>
+            conteoA = conteo = 0;
             listaObj.Add(Escuela);
             if (traerCursos)
                 listaObj.AddRange(Escuela.Cursos);
@@ -41,6 +51,7 @@ namespace CoreEscuela.App
             {
                 if (traerAlumnos)
                     listaObj.AddRange(curso.Alumnos);
+                    conteoA = curso.Alumnos.Count;
                 if (traerAsignaturas)
                     listaObj.AddRange(curso.Asignaturas);
                 if (traerEvaluaciones){
@@ -52,7 +63,7 @@ namespace CoreEscuela.App
                 }
             }
 
-            return (listaObj,conteo);
+            return listaObj;
         }
  
         private void CargarEvaluaciones()

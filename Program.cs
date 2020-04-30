@@ -1,10 +1,7 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using System;
-using CoreEscuela.Entidades;
+﻿using CoreEscuela.Entidades;
 using CoreEscuela.App;
 using System.Collections.Generic;
 using CoreEscuela.Util;
-using System.Linq;
 
 namespace CoreEscuela
 {
@@ -16,7 +13,10 @@ namespace CoreEscuela
            var EscuelaEngine = new EscuelaEngine();
             EscuelaEngine.Inicializar();
             //Impresion(EscuelaEngine.Escuela.Cursos);
-            var listObjetos = EscuelaEngine.GetEscuelas();
+            int i = 0;
+            int j = 0;
+            var listObjetos = EscuelaEngine.GetEscuelas(out i, out j);
+            System.Console.WriteLine($" Evaluaciomes {i} - Alumnos {j}");
           
 
             /*var  listaIlgar = from obj in listObjetos
