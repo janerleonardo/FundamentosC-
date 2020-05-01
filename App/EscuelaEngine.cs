@@ -25,10 +25,53 @@ namespace CoreEscuela.App
             CargarEvaluaciones();
 
         }
+    #region Diccionarios
+        public Dictionary<LlaveDiccionario, List<EntidadEscuela> > GetDirectorio()
+        {
+            var  dic = new Dictionary<LlaveDiccionario, List<EntidadEscuela> >();
+
+            dic.Add(LlaveDiccionario.Escuela,new List<EntidadEscuela>(){Escuela});
+            dic.Add(LlaveDiccionario.Cursos,Escuela.Cursos.Cast<EntidadEscuela>().ToList());
+             var  lista = new List<Evaluacion>();
+             var  listalum = new List<Alumno>();
+             var  listaAsig = new List<Asignatura>();
+            foreach (var curso in Escuela.Cursos)
+            {
+                listaAsig.AddRange(curso.Asignaturas);
+                listalum.AddRange(curso.Alumnos);
+                
+                foreach (var item in curso.Alumnos)
+                {
+                   lista.AddRange(item.Evaluciones);
+                    
+                }
+                
+            }
+             dic.Add(LlaveDiccionario.Asignatura,listaAsig.Cast<EntidadEscuela>().ToList());
+             dic.Add(LlaveDiccionario.Alumno,listalum.Cast<EntidadEscuela>().ToList());
+             dic.Add(LlaveDiccionario.Evaluacion,lista.Cast<EntidadEscuela>().ToList());
+
+
+            return dic;
+            //Codigo  comentado interesante
+            /*            Escuela.Cursos.ForEach(i => i.Alumnos.Add(new Alumno { Nombre = "Janer"}));*/
+        }
+
+        public void Imprimir (Dictionary<LlaveDiccionario, List<EntidadEscuela>> dict)
+        {
+            foreach (var obj in dict)
+            {
+                foreach (var value in obj.Value)
+                {
+                    Console.WriteLine(value);
+                }
+            }
+        }
+    #endregion
 
     #region  Metodos Subrecargado
 
-        public List<EntidadEscuela> GetEscuelas(
+        public IReadOnlyList<EntidadEscuela> GetEscuelas(
                                         bool traerEvaluaciones = true,
                                         bool traerAlumnos = true,
                                         bool traerAsignaturas = true,
@@ -38,7 +81,7 @@ namespace CoreEscuela.App
             int dummy = 0;
             return GetEscuelas(out dummy, out dummy);
         }
-        public List<EntidadEscuela> GetEscuelas(out int conteo,
+        public IReadOnlyList<EntidadEscuela> GetEscuelas(out int conteo,
                                                 bool traerEvaluaciones = true,
                                                 bool traerAlumnos = true,
                                                 bool traerAsignaturas = true,
@@ -48,17 +91,7 @@ namespace CoreEscuela.App
             int dummy = 0;
             return GetEscuelas(out conteo, out dummy);
         }
-        public List<EntidadEscuela> GetEscuelas(out int conteoB,
-                                                bool traerEvaluaciones = true,
-                                                bool traerAlumnos = true,
-                                                bool traerAsignaturas = true,
-                                                bool traerCursos = true)
-
-        {
-            int dummy = 0;
-            return GetEscuelas(out dummy, out conteoB);
-        }
-        public List<EntidadEscuela> GetEscuelas(out int conteo,
+        public IReadOnlyList<EntidadEscuela> GetEscuelas(out int conteo,
                                                 out int conteoA,
                                                 bool traerEvaluaciones = true,
                                                 bool traerAlumnos = true,
@@ -95,7 +128,7 @@ namespace CoreEscuela.App
                 }
             }
 
-            return listaObj;
+            return listaObj.AsReadOnly();
         }
     #endregion
     #region  Otros

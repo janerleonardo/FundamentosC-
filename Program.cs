@@ -17,6 +17,9 @@ namespace CoreEscuela
             int j = 0;
             var listObjetos = EscuelaEngine.GetEscuelas(out i, out j);
             System.Console.WriteLine($" Evaluaciomes {i} - Alumnos {j}");
+
+            var dictmp = EscuelaEngine.GetDirectorio();
+            EscuelaEngine.Imprimir(dictmp);
           
 
             /*var  listaIlgar = from obj in listObjetos
