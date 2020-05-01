@@ -57,13 +57,27 @@ namespace CoreEscuela.App
             /*            Escuela.Cursos.ForEach(i => i.Alumnos.Add(new Alumno { Nombre = "Janer"}));*/
         }
 
-        public void Imprimir (Dictionary<LlaveDiccionario, List<EntidadEscuela>> dict)
+        public void Imprimir (Dictionary<LlaveDiccionario, List<EntidadEscuela>> dict, bool impEvaluacion = false)
         {
             foreach (var obj in dict)
             {
                 foreach (var value in obj.Value)
-                {
-                    Console.WriteLine(value);
+                {   
+                    switch (obj.Key)
+                    {
+                       case LlaveDiccionario.Evaluacion:
+                            if (impEvaluacion)
+                                Console.WriteLine(value);
+                            break;
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine("Alumnos");
+                            Console.WriteLine(value);
+                            break;
+                        default:
+                            Console.WriteLine(value);
+                            break;
+                    }
+
                 }
             }
         }
