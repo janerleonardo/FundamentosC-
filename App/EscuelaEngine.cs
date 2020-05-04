@@ -25,31 +25,31 @@ namespace CoreEscuela.App
             CargarEvaluaciones();
 
         }
-    #region Diccionarios
-        public Dictionary<LlaveDiccionario, List<EntidadEscuela> > GetDirectorio()
+        #region Diccionarios
+        public Dictionary<LlaveDiccionario, List<EntidadEscuela>> GetDirectorio()
         {
-            var  dic = new Dictionary<LlaveDiccionario, List<EntidadEscuela> >();
+            var dic = new Dictionary<LlaveDiccionario, List<EntidadEscuela>>();
 
-            dic.Add(LlaveDiccionario.Escuela,new List<EntidadEscuela>(){Escuela});
-            dic.Add(LlaveDiccionario.Cursos,Escuela.Cursos.Cast<EntidadEscuela>().ToList());
-             var  lista = new List<Evaluacion>();
-             var  listalum = new List<Alumno>();
-             var  listaAsig = new List<Asignatura>();
+            dic.Add(LlaveDiccionario.Escuela, new List<EntidadEscuela>() { Escuela });
+            dic.Add(LlaveDiccionario.Cursos, Escuela.Cursos.Cast<EntidadEscuela>().ToList());
+            var lista = new List<Evaluacion>();
+            var listalum = new List<Alumno>();
+            var listaAsig = new List<Asignatura>();
             foreach (var curso in Escuela.Cursos)
             {
                 listaAsig.AddRange(curso.Asignaturas);
                 listalum.AddRange(curso.Alumnos);
-                
+
                 foreach (var item in curso.Alumnos)
                 {
-                   lista.AddRange(item.Evaluciones);
-                    
+                    lista.AddRange(item.Evaluciones);
+
                 }
-                
+
             }
-             dic.Add(LlaveDiccionario.Asignatura,listaAsig.Cast<EntidadEscuela>().ToList());
-             dic.Add(LlaveDiccionario.Alumno,listalum.Cast<EntidadEscuela>().ToList());
-             dic.Add(LlaveDiccionario.Evaluacion,lista.Cast<EntidadEscuela>().ToList());
+            dic.Add(LlaveDiccionario.Asignatura, listaAsig.Cast<EntidadEscuela>().ToList());
+            dic.Add(LlaveDiccionario.Alumno, listalum.Cast<EntidadEscuela>().ToList());
+            dic.Add(LlaveDiccionario.Evaluacion, lista.Cast<EntidadEscuela>().ToList());
 
 
             return dic;
@@ -57,15 +57,15 @@ namespace CoreEscuela.App
             /*            Escuela.Cursos.ForEach(i => i.Alumnos.Add(new Alumno { Nombre = "Janer"}));*/
         }
 
-        public void Imprimir (Dictionary<LlaveDiccionario, List<EntidadEscuela>> dict, bool impEvaluacion = false)
+        public void Imprimir(Dictionary<LlaveDiccionario, List<EntidadEscuela>> dict, bool impEvaluacion = false)
         {
             foreach (var obj in dict)
             {
                 foreach (var value in obj.Value)
-                {   
+                {
                     switch (obj.Key)
                     {
-                       case LlaveDiccionario.Evaluacion:
+                        case LlaveDiccionario.Evaluacion:
                             if (impEvaluacion)
                                 Console.WriteLine(value);
                             break;
@@ -81,9 +81,9 @@ namespace CoreEscuela.App
                 }
             }
         }
-    #endregion
+        #endregion
 
-    #region  Metodos Subrecargado
+        #region  Metodos Subrecargado
 
         public IReadOnlyList<EntidadEscuela> GetEscuelas(
                                         bool traerEvaluaciones = true,
@@ -144,18 +144,18 @@ namespace CoreEscuela.App
 
             return listaObj.AsReadOnly();
         }
-    #endregion
-    #region  Otros
+        #endregion
+        #region  Otros
         private void CargarEvaluaciones()
         {
-
+            var rnd = new Random();
             foreach (var curso in Escuela.Cursos)
             {
                 foreach (var asignatura in curso.Asignaturas)
                 {
                     foreach (var alumno in curso.Alumnos)
                     {
-                        var rnd = new Random(System.Environment.TickCount);
+
 
                         for (int i = 0; i < 5; i++)
                         {
@@ -163,7 +163,7 @@ namespace CoreEscuela.App
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()),
+                                Nota = MathF.Round((5 * (float)rnd.NextDouble()), 2),
                                 Alumno = alumno
                             };
                             alumno.Evaluciones.Add(ev);

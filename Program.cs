@@ -1,7 +1,9 @@
-﻿using CoreEscuela.Entidades;
+﻿using System;
+using CoreEscuela.Entidades;
 using CoreEscuela.App;
 using System.Collections.Generic;
 using CoreEscuela.Util;
+using System.Linq;
 
 namespace CoreEscuela
 {
@@ -9,7 +11,7 @@ namespace CoreEscuela
     {
         static void Main(string[] args)
         {
-           
+           AppDomain.CurrentDomain.ProcessExit += AccionEventos;
            var EscuelaEngine = new EscuelaEngine();
             EscuelaEngine.Inicializar();
             //Impresion(EscuelaEngine.Escuela.Cursos);
@@ -19,7 +21,14 @@ namespace CoreEscuela
             System.Console.WriteLine($" Evaluaciomes {i} - Alumnos {j}");
 
             var dictmp = EscuelaEngine.GetDirectorio();
-            EscuelaEngine.Imprimir(dictmp);
+           // EscuelaEngine.Imprimir(dictmp);
+           var reporteador = new Reporteador(dictmp);
+           reporteador.GetListaEvaluaciones();
+           //var  listEvaXAsignatura = reporteador.GetDicEvaluaXAsig();
+
+           var numero =  CountConditional();
+
+
           
 
             /*var  listaIlgar = from obj in listObjetos
@@ -37,6 +46,24 @@ namespace CoreEscuela
             Printer.Dibujarlinea();*/
 
         }
+
+        public static int CountConditional()
+        {
+            #region count-conditional
+            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+            int oddNumbers = numbers.Count(n => n % 2 == 1);
+
+            Console.WriteLine("There are {0} odd numbers in the list.", oddNumbers);
+            #endregion
+            return 0;
+        }
+
+        private static void AccionEventos(object sender, EventArgs e)
+        {
+            System.Console.Beep(1000,50);
+        }
+
         public static void Impresion(List<Curso> listCurso)
         {
 
